@@ -2084,8 +2084,8 @@
 //
 // ADS7843/XPT2046 ADC Touchscreen such as ILI9341 2.8
 //
-//@ still to do
-//#define TOUCH_BUTTONS
+//@ testing
+#define TOUCH_BUTTONS
 #if ENABLED(TOUCH_BUTTONS)
   #define BUTTON_DELAY_EDIT  50 // (ms) Button repeat delay for edit screens
   #define BUTTON_DELAY_MENU 250 // (ms) Button repeat delay for menus

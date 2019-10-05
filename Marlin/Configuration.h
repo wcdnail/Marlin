@@ -575,7 +575,7 @@
  * Note: For Bowden Extruders make this large enough to allow load/unload.
  */
 #define PREVENT_LENGTHY_EXTRUDE
-#define EXTRUDE_MAXLENGTH 500 //@ maybe needed for filament loading
+#define EXTRUDE_MAXLENGTH 650 //@ maybe needed for filament loading
 
 //===========================================================================
 //======================== Thermal Runaway Protection =======================
@@ -748,7 +748,7 @@
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4[, E5]]]]]
  */
 //@ keep speed reasonable
-#define DEFAULT_MAX_FEEDRATE          { 200, 200, 4, 70 }
+#define DEFAULT_MAX_FEEDRATE          { 200, 200, 4, 75 }
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
@@ -801,7 +801,7 @@
   #define DEFAULT_ZJERK  0.4
 #endif
 
-#define DEFAULT_EJERK    1.5  // May be used by Linear Advance
+#define DEFAULT_EJERK    1.5  // May be used by Linear Advance @lowered to keep extruder from rattling
 
 /**
  * S-Curve Acceleration

@@ -2084,6 +2084,13 @@
 
 //@
 #define FSMC_GRAPHICAL_TFT
+#if ENABLED(FSMC_GRAPHICAL_TFT)
+  //
+  // FSMC_UPSCALE 2 2x upscaler for 320x240 displays (default)
+  // FSMC_UPSCALE 3 3x upscaler for 480x320 displays
+  //
+  #define FSMC_UPSCALE 2
+#endif
 
 //=============================================================================
 //============================  Other Controllers  ============================

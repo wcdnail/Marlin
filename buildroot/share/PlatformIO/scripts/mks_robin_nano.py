@@ -22,7 +22,9 @@ def encrypt(source, target, env):
             byte = firmware.read(1)
             if position >= 320 and position < 31040:
                 byte = chr(ord(byte) ^ key[position & 31])
-            robin.write(byte)
+                robin.write(byte.encode('charmap'))
+            else:
+                robin.write(byte)
             position += 1
     finally:
         firmware.close()

@@ -49,11 +49,11 @@
 #define X_STOP_PIN        PA15
 #define Y_STOP_PIN        PA12
 #define Z_MIN_PIN         PA11
-#define Z_MAX_PIN         PC4
+//#define Z_MAX_PIN         PC4
 
-#ifndef FIL_RUNOUT_PIN
-  #define FIL_RUNOUT_PIN   PA4   // MT_DET
-#endif
+//#ifndef FIL_RUNOUT_PIN
+  //#define FIL_RUNOUT_PIN   PA4   // MT_DET
+//#endif
 
 //
 // Steppers
@@ -96,6 +96,7 @@
 #define HEATER_BED_PIN     PA0   // HOT BED
 
 #define FAN_PIN            PB1   // FAN
+#define HOTEND_FAN_PIN       PB0 // Hotend fan on Heater2
 
 //
 // Thermocouples

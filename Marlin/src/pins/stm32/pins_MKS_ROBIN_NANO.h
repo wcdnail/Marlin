@@ -38,6 +38,13 @@
 //
 #define DISABLE_DEBUG
 
+// Testing
+#define SDA_PIN            PB7
+#define SCL_PIN            PB6
+//#define I2C_EEPROM
+//#undef E2END
+//#define E2END 0x7FF // AT24C16N
+
 //
 // Note: MKS Robin board is using SPI2 interface.
 //
@@ -51,9 +58,9 @@
 #define Z_MIN_PIN         PA11
 //#define Z_MAX_PIN         PC4
 
-//#ifndef FIL_RUNOUT_PIN
-  //#define FIL_RUNOUT_PIN   PA4   // MT_DET
-//#endif
+#ifndef FIL_RUNOUT_PIN
+  #define FIL_RUNOUT_PIN   PA4   // MT_DET
+#endif
 
 //
 // Steppers

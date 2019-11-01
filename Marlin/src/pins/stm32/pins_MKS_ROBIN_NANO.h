@@ -38,6 +38,13 @@
 //
 #define DISABLE_DEBUG
 
+// Testing
+#define SDA_PIN            PB7
+#define SCL_PIN            PB6
+//#define I2C_EEPROM
+//#undef E2END
+//#define E2END 0x7FF // AT24C16N
+
 //
 // Note: MKS Robin board is using SPI2 interface.
 //
@@ -49,7 +56,7 @@
 #define X_STOP_PIN        PA15
 #define Y_STOP_PIN        PA12
 #define Z_MIN_PIN         PA11
-#define Z_MAX_PIN         PC4
+//#define Z_MAX_PIN         PC4
 
 #ifndef FIL_RUNOUT_PIN
   #define FIL_RUNOUT_PIN   PA4   // MT_DET
@@ -74,25 +81,29 @@
 #define E0_STEP_PIN        PD6
 #define E0_DIR_PIN         PD3
 
-#define E1_ENABLE_PIN      PA3
-#define E1_STEP_PIN        PA6
-#define E1_DIR_PIN         PA1
+//#define E1_ENABLE_PIN      PA3
+//#define E1_STEP_PIN        PA6
+//#define E1_DIR_PIN         PA1
 
 //
 // Temperature Sensors
 //
-#define TEMP_0_PIN         PC1   // TH1
-#define TEMP_1_PIN         PC2   // TH2
-#define TEMP_BED_PIN       PC0   // TB1
+#define TEMP_0_PIN            PC1   // TH1
+#define TEMP_CHAMBER_PIN      PC2   // TH2
+
+//#define TEMP_1_PIN          PC2   // TH2
+
+#define TEMP_BED_PIN          PC0   // TB1
 
 //
 // Heaters / Fans
 //
 #define HEATER_0_PIN       PC3   // HEATER1
-#define HEATER_1_PIN       PB0   // HEATER2
+//#define HEATER_1_PIN       PB0   // HEATER2
 #define HEATER_BED_PIN     PA0   // HOT BED
 
 #define FAN_PIN            PB1   // FAN
+#define HOTEND_FAN_PIN       PB0 // Hotend fan on Heater2
 
 //
 // Thermocouples
@@ -127,7 +138,7 @@
   #define FSMC_CS_PIN        PD7    // NE4
   #define FSMC_RS_PIN        PD11   // A0
 
-  #define LCD_USE_DMA_FSMC // DMA transfer to TFT?
+  #define LCD_USE_DMA_FSMC //
   #define FSMC_DMA_DEV DMA2
   #define FSMC_DMA_CHANNEL DMA_CH5
 
@@ -139,7 +150,7 @@
   #if ENABLED(TOUCH_BUTTONS)
     //@
     #define TOUCH_CS_PIN     PA7
-    #define TOUCH_SCK_PIN PB13 // ? complete SPI pins
+    #define TOUCH_SCK_PIN PB13
     #define TOUCH_MOSI_PIN PB15
     #define TOUCH_MISO_PIN PB14
   #endif

@@ -471,7 +471,7 @@ static const uint8_t ili9341_init_sequence[] = { // 0x9341 - ILI9341
   // *check for button sizes and how to upscale to fit on screen
   // *check if other parts of marlin use drawImage
 
-  void drawImage(const uint8_t *data, u8g_t *u8g, u8g_dev_t *dev, uint16_t length, uint16_t height, uint16_t color) {
+  static void drawImage(const uint8_t *data, u8g_t *u8g, u8g_dev_t *dev, uint16_t length, uint16_t height, uint16_t color) {
     static uint16_t p_buffer[288];
     uint16_t* buffer = &p_buffer[0];
 

@@ -120,7 +120,7 @@
   #define DOGLCD
   #define IS_ULTIPANEL
   #define LED_COLORS_REDUCE_GREEN
-  #if HAS_POWER_SWITCH && EITHER(FYSETC_MINI_12864_2_0, FYSETC_MINI_12864_2_1)
+  #if ENABLED(PSU_CONTROL) && EITHER(FYSETC_MINI_12864_2_0, FYSETC_MINI_12864_2_1)
     #define LED_BACKLIGHT_TIMEOUT 10000
   #endif
 
@@ -231,7 +231,11 @@
   #define DOGLCD
   #define IS_ULTIPANEL
   #define DELAYED_BACKLIGHT_INIT
+  #define TFT_HAS_COLOR defined(FSMC_GRAPHICAL_TFT)
 #endif
+
+// don't know if this is the right way to do it
+#define TFT_HAS_COLOR defined(FSMC_GRAPHICAL_TFT)
 
 /**
  * I2C Panels
@@ -416,7 +420,6 @@
 #if EITHER(SINGLENOZZLE, MIXING_EXTRUDER)         // One hotend, one thermistor, no XY offset
   #undef HOTENDS
   #define HOTENDS       1
-  #undef TEMP_SENSOR_1_AS_REDUNDANT
   #undef HOTEND_OFFSET_X
   #undef HOTEND_OFFSET_Y
 #endif

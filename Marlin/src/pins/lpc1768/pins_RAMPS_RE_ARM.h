@@ -59,6 +59,7 @@
 #define Y_MAX_PIN          P1_27   // (15) 10k pullup to 3.3V, 1K series
 #define Z_MIN_PIN          P1_29   // (18) 10k pullup to 3.3V, 1K series
 #define Z_MAX_PIN          P1_28   // (19) 10k pullup to 3.3V, 1K series
+#define ONBOARD_ENDSTOPPULLUPS     // Board has built-in pullups
 
 //
 // Steppers
@@ -152,10 +153,12 @@
   #ifndef E0_SERIAL_TX_PIN
     #define E0_SERIAL_TX_PIN P2_08
   #endif
-  #ifndef E0_SESIAL_RX_PIN
+  #ifndef E0_SERIAL_RX_PIN
     #define E0_SERIAL_RX_PIN P2_08
   #endif
 
+  // Reduce baud rate to improve software serial reliability
+  #define TMC_BAUD_RATE 19200
 #endif
 
 //

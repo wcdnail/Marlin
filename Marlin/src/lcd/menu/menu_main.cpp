@@ -42,16 +42,6 @@
 #define MACHINE_CAN_STOP (EITHER(SDSUPPORT, HOST_PROMPT_SUPPORT) || defined(ACTION_ON_CANCEL))
 #define MACHINE_CAN_PAUSE (ANY(SDSUPPORT, HOST_PROMPT_SUPPORT, PARK_HEAD_ON_PAUSE) || defined(ACTION_ON_PAUSE))
 
-#if MACHINE_CAN_STOP
-  void menu_abort_confirm() {
-    MenuItem_confirm::select_screen(
-      GET_TEXT(MSG_BUTTON_STOP), GET_TEXT(MSG_BACK),
-      ui.abort_print, ui.goto_previous_screen,
-      GET_TEXT(MSG_STOP_PRINT), (PGM_P)nullptr, PSTR("?")
-    );
-  }
-#endif // MACHINE_CAN_STOP
-
 #if ENABLED(PRUSA_MMU2)
   #include "../../lcd/menu/menu_mmu2.h"
 #endif
@@ -105,12 +95,22 @@ void menu_main() {
       ACTION_ITEM(MSG_PAUSE_PRINT, ui.pause_print);
     #endif
     #if MACHINE_CAN_STOP
-      SUBMENU(MSG_STOP_PRINT, menu_abort_confirm);
+      SUBMENU(MSG_STOP_PRINT, []{
+        MenuItem_confirm::select_screen(
+          GET_TEXT(MSG_BUTTON_STOP), GET_TEXT(MSG_BACK),
+          ui.abort_print, ui.goto_previous_screen,
+          GET_TEXT(MSG_STOP_PRINT), (PGM_P)nullptr, PSTR("?")
+        );
+      });
     #endif
     SUBMENU(MSG_TUNE, menu_tune);
   }
   else {
+
     #if !HAS_ENCODER_WHEEL && ENABLED(SDSUPPORT)
+
+      // *** IF THIS SECTION IS CHANGED, REPRODUCE BELOW ***
+
       //
       // Autostart
       //
@@ -138,6 +138,7 @@ void menu_main() {
           ACTION_ITEM(MSG_MEDIA_RELEASED, nullptr);
         #endif
       }
+
     #endif // !HAS_ENCODER_WHEEL && SDSUPPORT
 
     #if MACHINE_CAN_PAUSE
@@ -201,6 +202,9 @@ void menu_main() {
   #endif
 
   #if HAS_ENCODER_WHEEL && ENABLED(SDSUPPORT)
+
+    // *** IF THIS SECTION IS CHANGED, REPRODUCE ABOVE ***
+
     //
     // Autostart
     //
@@ -228,6 +232,7 @@ void menu_main() {
         ACTION_ITEM(MSG_MEDIA_RELEASED, nullptr);
       #endif
     }
+
   #endif // HAS_ENCODER_WHEEL && SDSUPPORT
 
   #if HAS_SERVICE_INTERVALS

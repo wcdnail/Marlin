@@ -155,7 +155,7 @@ inline constexpr uint16_t RGBto565(uint32_t rgbv) {
 #define _TFT_FLG_STATUS_SCREEN 3
 #define _TFT_SCREEN_MASK       0x1f
 
-#if ENABLED(FSMC_GRAPHICAL_TFT)
+#if HAS_GRAPHICAL_LCD && PIN_EXISTS(FSMC_CS) && ENABLED(FSMC_GRAPHICAL_TFT)
   #ifdef __cplusplus
     extern "C" {
   #endif

@@ -103,11 +103,9 @@ void MarlinUI::clear_lcd() {
     //tft.add_image(142, 130, imgBootScreen);  // MarlinLogo195x59x16
     tft.add_image(80, 40, imgBootScreen);  // MarlinLogo320x240x16
 
-#if 0
     #ifdef WEBSITE_URL
-      tft.add_text(8, 250, COLOR_WEBSITE_URL, WEBSITE_URL);
+      tft.add_text(8, 250, COLOR_WEBSITE_URL, "MELS");
     #endif
-#endif
 
     tft.queue.sync();
     safe_delay(BOOTSCREEN_TIMEOUT);

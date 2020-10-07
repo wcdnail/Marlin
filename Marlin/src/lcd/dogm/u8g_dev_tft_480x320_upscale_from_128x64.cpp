@@ -88,7 +88,7 @@
 
 #include "../../inc/MarlinConfig.h"
 
-#if HAS_GRAPHICAL_LCD && PIN_EXISTS(FSMC_CS)
+#if ENABLED(MKS_ROBIN_NANO_TFT35)
 #include "HAL_LCD_com_defines.h"
 #include "ultralcd_DOGM.h"
 #include "../../../ColorScheme.h"
@@ -673,6 +673,6 @@ uint8_t u8g_dev_tft_480x320_upscale_from_128x64_fn(u8g_t *u8g, u8g_dev_t *dev, u
   return u8g_dev_pb8v1_base_fn(u8g, dev, msg, arg);
 }
 
-U8G_PB_DEV(u8g_dev_tft_480x320_upscale_from_128x64, WIDTH, HEIGHT, PAGE_HEIGHT, u8g_dev_tft_480x320_upscale_from_128x64_fn, U8G_COM_HAL_FSMC_FN);
+U8G_PB_DEV(u8g_dev_tft_480x320_upscale_from_128x64, WIDTH, HEIGHT, PAGE_HEIGHT, u8g_dev_tft_480x320_upscale_from_128x64_fn, U8G_COM_HAL_TFT_FN);
 
 #endif // HAS_GRAPHICAL_LCD && FSMC_CS

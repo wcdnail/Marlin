@@ -44,7 +44,7 @@ inline constexpr uint16_t RGBto565(uint32_t rgbv) {
 
 #if 0
 // Indexes
-#if ENABLED(FSMC_GRAPHICAL_TFT)
+#if ENABLED(MKS_ROBIN_NANO_TFT35)
   #define CTHEME_ZEROINDEX              0
   #define CTHEME_DEFAULTS               (CTHEME_ZEROINDEX + 0)
   #define CTHEME_KILLSCREEN             (CTHEME_ZEROINDEX + 1)
@@ -155,7 +155,7 @@ inline constexpr uint16_t RGBto565(uint32_t rgbv) {
 #define _TFT_FLG_STATUS_SCREEN 3
 #define _TFT_SCREEN_MASK       0x1f
 
-#if ENABLED(FSMC_GRAPHICAL_TFT)
+#if ENABLED(MKS_ROBIN_NANO_TFT35)
   #ifdef __cplusplus
     extern "C" {
   #endif

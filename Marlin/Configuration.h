@@ -813,8 +813,8 @@
   #define PID_FUNCTIONAL_RANGE 10 // If the temperature difference between the target temperature and the actual temperature
                                   // is more than PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.
 
-  //#define PID_EDIT_MENU         // Add PID editing to the "Advanced Settings" menu. (~700 bytes of flash)
-  //#define PID_AUTOTUNE_MENU     // Add PID auto-tuning to the "Advanced Settings" menu. (~250 bytes of flash)
+  #define PID_EDIT_MENU           // Add PID editing to the "Advanced Settings" menu. (~700 bytes of flash)
+  #define PID_AUTOTUNE_MENU       // Add PID auto-tuning to the "Advanced Settings" menu. (~250 bytes of flash)
 #endif
 
 // @section safety
@@ -866,7 +866,7 @@
 
 // Enable one of the options below for CoreXY, CoreXZ, or CoreYZ kinematics,
 // either in the usual order or reversed
-#define COREXY //@
+#define COREXY // @
 //#define COREXZ
 //#define COREYZ
 //#define COREYX
@@ -1049,7 +1049,7 @@
 //#define USE_WMIN_PLUG
 //#define USE_XMAX_PLUG
 #define USE_YMAX_PLUG
-#define USE_ZMAX_PLUG
+//#define USE_ZMAX_PLUG // @@ enable for capacitive/inductive probe
 //#define USE_IMAX_PLUG
 //#define USE_JMAX_PLUG
 //#define USE_KMAX_PLUG
@@ -1174,7 +1174,7 @@
  * Override with M92
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-//@ settings from 1.0.3 stock firmware [E подправлен]
+// @ settings from 1.0.3 stock firmware [E подправлен]
 #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80.3, 80.4, 1600, 403.44 }
 
 /**
@@ -1182,7 +1182,7 @@
  * Override with M203
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-//@ keep speed reasonable
+// @ keep speed reasonable
 #define DEFAULT_MAX_FEEDRATE          { 200, 200, 4, 75 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
@@ -1196,7 +1196,7 @@
  * Override with M201
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-//@ keep speed reasonable
+// @ keep speed reasonable
 #define DEFAULT_MAX_ACCELERATION      { 2000, 2000, 100, 1000 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
@@ -1304,7 +1304,7 @@
  *      - normally-closed switches to GND and D32.
  *      - normally-open switches to 5V and D32.
  */
-#define Z_MIN_PROBE_PIN Z_MAX_PIN // Pin 32 is the RAMPS default
+//#define Z_MIN_PROBE_PIN Z_MAX_PIN // Pin 32 is the RAMPS default // @@ enable for capacitive/inductive probe
 
 /**
  * Probe Type
@@ -1319,13 +1319,13 @@
  * or (with LCD_BED_LEVELING) the LCD controller.
  */
 //@
-//#define PROBE_MANUALLY
+#define PROBE_MANUALLY // @ NEW
 
 /**
  * A Fix-Mounted Probe either doesn't deploy or needs manual deployment.
  *   (e.g., an inductive probe or a nozzle-based probe-switch.)
  */
-#define FIX_MOUNTED_PROBE
+//#define FIX_MOUNTED_PROBE // @@ enable for capacitive/inductive probe
 
 /**
  * Use the nozzle as the probe, as with a conductive
@@ -1583,7 +1583,7 @@
 #define Z_PROBE_OFFSET_RANGE_MAX 20
 
 // Enable the M48 repeatability test to test probe accuracy
-#define Z_MIN_PROBE_REPEATABILITY_TEST
+//#define Z_MIN_PROBE_REPEATABILITY_TEST // @@ enable for capacitive/inductive probe
 
 // Before deploy/stow pause for user confirmation
 //#define PAUSE_BEFORE_DEPLOY_STOW
@@ -1789,7 +1789,7 @@
  * RAMPS-based boards use SERVO3_PIN for the first runout sensor.
  * For other boards you may need to define FIL_RUNOUT_PIN, FIL_RUNOUT2_PIN, etc.
  */
-//#define FILAMENT_RUNOUT_SENSOR
+//#define FILAMENT_RUNOUT_SENSOR // @ enabled - in original
 #if ENABLED(FILAMENT_RUNOUT_SENSOR)
   #define FIL_RUNOUT_ENABLED_DEFAULT true // Enable the sensor on startup. Override with M412 followed by M500.
   #define NUM_RUNOUT_SENSORS   1          // Number of sensors, up to one per extruder. Define a FIL_RUNOUT#_PIN for each.
@@ -1891,8 +1891,8 @@
  */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
-//#define AUTO_BED_LEVELING_BILINEAR
-#define AUTO_BED_LEVELING_UBL
+//define AUTO_BED_LEVELING_UBL
+#define AUTO_BED_LEVELING_BILINEAR // @ NEW 
 //#define MESH_BED_LEVELING
 
 /**
@@ -1978,13 +1978,13 @@
 
     // Beyond the probed grid, continue the implied tilt?
     // Default is to maintain the height of the nearest edge.
-    //#define EXTRAPOLATE_BEYOND_GRID
+    //#define EXTRAPOLATE_BEYOND_GRID // @ enabled - in original
 
     //
     // Experimental Subdivision of the grid by Catmull-Rom method.
     // Synthesizes intermediate points to produce a more detailed mesh.
     //
-    //#define ABL_BILINEAR_SUBDIVISION
+    //#define ABL_BILINEAR_SUBDIVISION // @ enabled - in original
     #if ENABLED(ABL_BILINEAR_SUBDIVISION)
       // Number of subdivisions between probe points
       #define BILINEAR_SUBDIVISIONS 3
@@ -2042,13 +2042,13 @@
 #endif
 
 // Add a menu item to move between bed corners for manual bed adjustment
-//#define LCD_BED_TRAMMING
+#define LCD_BED_TRAMMING
 
 #if ENABLED(LCD_BED_TRAMMING)
   #define BED_TRAMMING_INSET_LFRB { 30, 30, 30, 30 } // (mm) Left, Front, Right, Back insets
   #define BED_TRAMMING_HEIGHT      0.0        // (mm) Z height of nozzle at leveling points
   #define BED_TRAMMING_Z_HOP       4.0        // (mm) Z height of nozzle between leveling points
-  //#define BED_TRAMMING_INCLUDE_CENTER       // Move to the center after the last corner
+  #define BED_TRAMMING_INCLUDE_CENTER         // Move to the center after the last corner
   //#define BED_TRAMMING_USE_PROBE
   #if ENABLED(BED_TRAMMING_USE_PROBE)
     #define BED_TRAMMING_PROBE_TOLERANCE 0.1  // (mm)
@@ -2191,7 +2191,7 @@
  *   M501 - Read settings from EEPROM. (i.e., Throw away unsaved changes)
  *   M502 - Revert settings to "factory" defaults. (Follow with M500 to init the EEPROM.)
  */
-#define EEPROM_SETTINGS     // Persistent storage with M500 and M501
+#define EEPROM_SETTINGS       // Persistent storage with M500 and M501
 //#define DISABLE_M503        // Saves ~2700 bytes of flash. Disable for release!
 #define EEPROM_CHITCHAT       // Give feedback on EEPROM commands. Disable to save PROGMEM.
 #define EEPROM_BOOT_SILENT    // Keep M503 quiet and only give errors during first load
@@ -2231,8 +2231,8 @@
 //
 //@
 #define PREHEAT_1_LABEL      "ABS"
-#define PREHEAT_1_TEMP_HOTEND 240
-#define PREHEAT_1_TEMP_BED    100
+#define PREHEAT_1_TEMP_HOTEND 230
+#define PREHEAT_1_TEMP_BED    110
 #define PREHEAT_1_TEMP_CHAMBER 35
 #define PREHEAT_1_FAN_SPEED     0 // Value from 0 to 255
 
@@ -2480,7 +2480,7 @@
  */
 //@
 #define SDSUPPORT
-#define SDIO_SUPPORT
+//#define SDIO_SUPPORT // @ NEW 
 
 /**
  * SD CARD: ENABLE CRC
@@ -2488,7 +2488,7 @@
  * Use CRC checks and retries on the SD communication.
  */
 //@
-#define SD_CHECK_AND_RETRY
+//#define SD_CHECK_AND_RETRY
 
 /**
  * LCD Menu Items
@@ -3071,8 +3071,7 @@
 //
 //#define MKS_ROBIN_NANO_TFT35
 
-//
-// TFT LVGL UI
+// @@@ CHECK IT OUT!!!
 // 480x320, 3.5", FSMC Display From MKS
 // Usually paired with MKS Robin Nano V1.2
 //

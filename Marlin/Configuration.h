@@ -1695,8 +1695,8 @@
 // :[-1,1]
 #define X_HOME_DIR -1
 
-// SapphirePro Y endstop on max
-#define Y_HOME_DIR 1
+// @@ SapphirePro Y endstop on max Y=-1 (for Nano)
+#define Y_HOME_DIR -1 // SKR 1.3 uses MIN 
 #define Z_HOME_DIR -1
 //#define I_HOME_DIR -1
 //#define J_HOME_DIR -1

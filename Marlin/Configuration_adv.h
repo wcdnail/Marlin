@@ -2788,23 +2788,26 @@
  */
 #if HAS_TRINAMIC_CONFIG
 
-  #define HOLD_MULTIPLIER   0.5       // Scales down the holding current from run current
-                                      // ток в режиме удержания
+  #define HOLD_MULTIPLIER   MY_HOLD_MULTIPLIER // Scales down the holding current from run current
 
   /**
    * Interpolate microsteps to 256
    * Override for each driver with <driver>_INTERPOLATE settings below
    */
-  #define INTERPOLATE       true       // интерполяция до 256 микрошагов
+  #define INTERPOLATE       MY_INTERPOLATE
 
   #if AXIS_IS_TMC(X)
-    #define X_CURRENT       800        // (mA) RMS current. Multiply by 1.414 for peak current.
-    #define X_CURRENT_HOME  X_CURRENT  // (mA) RMS current for sensorless homing
-    #define X_MICROSTEPS    16         // 0..256
-    #define X_RSENSE        0.11
-    #define X_CHAIN_POS     -1          // -1..0: Not chained. 1: MCU MOSI connected. 2: Next in chain, ...
-    //#define X_INTERPOLATE  true      // Enable to override 'INTERPOLATE' for the X axis
-    //#define X_HOLD_MULTIPLIER 0.5    // Enable to override 'HOLD_MULTIPLIER' for the X axis
+    #define X_CURRENT       MY_X_CURRENT              // (mA) RMS current. Multiply by 1.414 for peak current.
+    #define X_CURRENT_HOME  MY_X_CURRENT_HOME         // (mA) RMS current for sensorless homing
+    #define X_MICROSTEPS    MY_X_MICROSTEPS           // 0..256
+    #define X_RSENSE        MY_X_RSENSE
+    #define X_CHAIN_POS     MY_X_CHAIN_POS            // -1..0: Not chained. 1: MCU MOSI connected. 2: Next in chain, ...
+    #ifdef MY_X_INTERPOLATE                           // Enable to override 'INTERPOLATE' for the X axis
+      #define X_INTERPOLATE MY_X_INTERPOLATE
+    #endif
+    #ifdef MY_X_HOLD_MULTIPLIER                       // Enable to override 'HOLD_MULTIPLIER' for the X axis
+      #define X_HOLD_MULTIPLIER MY_X_HOLD_MULTIPLIER
+    #endif
   #endif
 
   #if AXIS_IS_TMC(X2)
@@ -2818,13 +2821,17 @@
   #endif
 
   #if AXIS_IS_TMC(Y)
-    #define Y_CURRENT       800
-    #define Y_CURRENT_HOME  Y_CURRENT
-    #define Y_MICROSTEPS    16
-    #define Y_RSENSE        0.11
-    #define Y_CHAIN_POS     -1
-    //#define Y_INTERPOLATE  true
-    //#define Y_HOLD_MULTIPLIER 0.5
+    #define Y_CURRENT       MY_Y_CURRENT
+    #define Y_CURRENT_HOME  MY_Y_CURRENT_HOME
+    #define Y_MICROSTEPS    MY_Y_MICROSTEPS
+    #define Y_RSENSE        MY_Y_RSENSE
+    #define Y_CHAIN_POS     MY_Y_CHAIN_POS
+    #ifdef MY_Y_INTERPOLATE
+      #define Y_INTERPOLATE MY_Y_INTERPOLATE
+    #endif
+    #ifdef MY_Y_HOLD_MULTIPLIER
+      #define Y_HOLD_MULTIPLIER MY_Y_HOLD_MULTIPLIER
+    #endif
   #endif
 
   #if AXIS_IS_TMC(Y2)
@@ -2838,13 +2845,17 @@
   #endif
 
   #if AXIS_IS_TMC(Z)
-    #define Z_CURRENT       800
-    #define Z_CURRENT_HOME  Z_CURRENT
-    #define Z_MICROSTEPS    16
-    #define Z_RSENSE        0.11
-    #define Z_CHAIN_POS     -1
-    //#define Z_INTERPOLATE  true
-    //#define Z_HOLD_MULTIPLIER 0.5
+    #define Z_CURRENT       MY_Z_CURRENT
+    #define Z_CURRENT_HOME  MY_Z_CURRENT_HOME
+    #define Z_MICROSTEPS    MY_Z_MICROSTEPS
+    #define Z_RSENSE        MY_Z_RSENSE
+    #define Z_CHAIN_POS     MY_Z_CHAIN_POS
+    #ifdef MY_Z_INTERPOLATE
+      #define Z_INTERPOLATE MY_Z_INTERPOLATE
+    #endif
+    #ifdef MY_Z_HOLD_MULTIPLIER
+      #define Z_HOLD_MULTIPLIER MY_Z_HOLD_MULTIPLIER
+    #endif
   #endif
 
   #if AXIS_IS_TMC(Z2)
@@ -2938,12 +2949,16 @@
   #endif
 
   #if AXIS_IS_TMC(E0)
-    #define E0_CURRENT      800
-    #define E0_MICROSTEPS   16
-    #define E0_RSENSE       0.11
-    #define E0_CHAIN_POS    -1
-    //#define E0_INTERPOLATE true
-    //#define E0_HOLD_MULTIPLIER 0.5
+    #define E0_CURRENT      MY_E0_CURRENT
+    #define E0_MICROSTEPS   MY_E0_MICROSTEPS
+    #define E0_RSENSE       MY_E0_RSENSE
+    #define E0_CHAIN_POS    MY_E0_CHAIN_POS
+    #ifdef MY_E0_INTERPOLATE
+      #define E0_INTERPOLATE  MY_E0_INTERPOLATE
+    #endif
+    #ifdef MY_E0_HOLD_MULTIPLIER
+      #define E0_HOLD_MULTIPLIER MY_E0_HOLD_MULTIPLIER
+    #endif
   #endif
 
   #if AXIS_IS_TMC(E1)
@@ -3043,7 +3058,7 @@
    * The default SW SPI pins are defined the respective pins files,
    * but you can override or define them here.
    */
-  #define TMC_USE_SW_SPI // @@@ TODO: Нужно попробовать без этого флага
+  //#define TMC_USE_SW_SPI
   //#define TMC_SW_MOSI       -1
   //#define TMC_SW_MISO       -1
   //#define TMC_SW_SCK        -1
@@ -3181,17 +3196,17 @@
    * STEALTHCHOP_(XY|Z|E) must be enabled to use HYBRID_THRESHOLD.
    * M913 X/Y/Z/E to live tune the setting
    */
-  #define HYBRID_THRESHOLD // @@@
+  //#define HYBRID_THRESHOLD
 
-  #define X_HYBRID_THRESHOLD     100  // [mm/s]
+  #define X_HYBRID_THRESHOLD     MY_X_HYBRID_THRESHOLD  // [mm/s]
   #define X2_HYBRID_THRESHOLD    100
-  #define Y_HYBRID_THRESHOLD     100
+  #define Y_HYBRID_THRESHOLD     MY_Y_HYBRID_THRESHOLD
   #define Y2_HYBRID_THRESHOLD    100
-  #define Z_HYBRID_THRESHOLD       3
+  #define Z_HYBRID_THRESHOLD     MY_Z_HYBRID_THRESHOLD
   #define Z2_HYBRID_THRESHOLD      3
   #define Z3_HYBRID_THRESHOLD      3
   #define Z4_HYBRID_THRESHOLD      3
-  #define I_HYBRID_THRESHOLD       3  // [linear=mm/s, rotational=°/s]
+  #define I_HYBRID_THRESHOLD     MY_E0_HYBRID_THRESHOLD 
   #define J_HYBRID_THRESHOLD       3  // [linear=mm/s, rotational=°/s]
   #define K_HYBRID_THRESHOLD       3  // [linear=mm/s, rotational=°/s]
   #define U_HYBRID_THRESHOLD       3  // [mm/s]
@@ -3232,14 +3247,14 @@
    * Comment *_STALL_SENSITIVITY to disable sensorless homing for that axis.
    * @section tmc/stallguard
    */
-  #define SENSORLESS_HOMING // StallGuard capable drivers only @@@ NO ENDSTOPS!
+  //#define SENSORLESS_HOMING // StallGuard capable drivers only
 
   #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
     // TMC2209: 0...255. TMC2130: -64...63
-    #define X_STALL_SENSITIVITY    5                  // M914 X10 Y10  ; Set X and Y stall sensitivity to 10
-    #define X2_STALL_SENSITIVITY X_STALL_SENSITIVITY
-    #define Y_STALL_SENSITIVITY    5
-    #define Y2_STALL_SENSITIVITY Y_STALL_SENSITIVITY
+    #define X_STALL_SENSITIVITY    MY_X_STALL_SENSITIVITY // M914 X10 Y10  ; Set X and Y stall sensitivity to 10
+    #define X2_STALL_SENSITIVITY   X_STALL_SENSITIVITY
+    #define Y_STALL_SENSITIVITY    MY_Y_STALL_SENSITIVITY
+    #define Y2_STALL_SENSITIVITY   Y_STALL_SENSITIVITY
     //#define Z_STALL_SENSITIVITY  8
     //#define Z2_STALL_SENSITIVITY Z_STALL_SENSITIVITY
     //#define Z3_STALL_SENSITIVITY Z_STALL_SENSITIVITY
@@ -3250,7 +3265,7 @@
     //#define U_STALL_SENSITIVITY  8
     //#define V_STALL_SENSITIVITY  8
     //#define W_STALL_SENSITIVITY  8
-    //#define SPI_ENDSTOPS              // TMC2130 only @@@
+    //#define SPI_ENDSTOPS              // TMC2130 only
     //#define IMPROVE_HOMING_RELIABILITY
   #endif
 
@@ -3278,7 +3293,7 @@
    * Enable M122 debugging command for TMC stepper drivers.
    * M122 S0/1 will enable continuous reporting.
    */
-  #define TMC_DEBUG
+  //#define TMC_DEBUG
 
   /**
    * You can set your own advanced settings by filling in predefined functions.

@@ -65,6 +65,9 @@
   #include "../../feature/bedlevel/bedlevel.h"
 #endif
 
+// @@@
+#include "DateTime-version.h"
+
 /**
  * Include all needed font files
  * (See https://marlinfw.org/docs/development/fonts.html)
@@ -186,9 +189,25 @@ bool MarlinUI::detected() { return true; }
   // or the animated boot screen within its own u8g loop
   void MarlinUI::draw_marlin_bootscreen(const bool line2/*=false*/) {
 
+#ifndef CUSTMOM_SPLASH_LINE1
+#  define CUSTMOM_SPLASH_LINE1 SHORT_BUILD_VERSION
+#endif
+#ifndef CUSTMOM_SPLASH_LINE2
+    static const char buildDateTime[] = { 
+      BUILD_HOUR_CH0, BUILD_HOUR_CH1, ':',
+      BUILD_MIN_CH0, BUILD_MIN_CH1, '.',
+      BUILD_SEC_CH0, BUILD_SEC_CH1, ' ',
+      BUILD_DAY_CH0, BUILD_DAY_CH1, '.',
+      BUILD_MONTH_CH0, BUILD_MONTH_CH1, '.',
+      BUILD_YEAR_CH0, BUILD_YEAR_CH1, BUILD_YEAR_CH2, BUILD_YEAR_CH3,
+      0
+    };
+#  define CUSTMOM_SPLASH_LINE2 buildDateTime
+#endif
+
     // Determine text space needed
-    constexpr u8g_uint_t text_width_1 = u8g_uint_t((sizeof(SHORT_BUILD_VERSION) - 1) * (MENU_FONT_WIDTH)),
-                         text_width_2 = u8g_uint_t((sizeof(MARLIN_WEBSITE_URL) - 1) * (MENU_FONT_WIDTH)),
+    constexpr u8g_uint_t text_width_1 = u8g_uint_t((sizeof(CUSTMOM_SPLASH_LINE1) - 1) * (MENU_FONT_WIDTH)),
+                         text_width_2 = u8g_uint_t((sizeof(CUSTMOM_SPLASH_LINE2) - 1) * (MENU_FONT_WIDTH)),
                          text_max_width = _MAX(text_width_1, text_width_2),
                          text_total_height = (MENU_FONT_HEIGHT) * 2,
                          width = LCD_PIXEL_WIDTH, height = LCD_PIXEL_HEIGHT,
@@ -218,8 +237,8 @@ bool MarlinUI::detected() { return true; }
     auto _draw_bootscreen_bmp = [&](const uint8_t *bitmap) {
       u8g.drawBitmapP(offx, offy, START_BMP_BYTEWIDTH, START_BMPHEIGHT, bitmap);
       set_font(FONT_MENU);
-      if (!two_part || !line2) lcd_put_u8str(txt_offx_1, txt_base - (MENU_FONT_HEIGHT), F(SHORT_BUILD_VERSION));
-      if (!two_part || line2) lcd_put_u8str(txt_offx_2, txt_base, F(MARLIN_WEBSITE_URL));
+      if (!two_part || !line2) lcd_put_u8str(txt_offx_1, txt_base - (MENU_FONT_HEIGHT), F(CUSTMOM_SPLASH_LINE1));
+      if (!two_part || line2) lcd_put_u8str(txt_offx_2, txt_base, F(CUSTMOM_SPLASH_LINE2));
     };
 
     auto draw_bootscreen_bmp = [&](const uint8_t *bitmap) {

@@ -357,8 +357,6 @@ void MarlinUI::update_language_font() {
 void MarlinUI::draw_kill_screen() {
   TERN_(LIGHTWEIGHT_UI, ST7920_Lite_Status_Screen::clear_text_buffer());
   const u8g_uint_t x = 0, h4 = u8g.getHeight() / 4;
-  CTHEME_FLAGS(_TFT_FLG_KILL_SCREEN);
-  CTHEME_SEL(KILLSCREEN);
   u8g.firstPage();
   do {
     set_font(FONT_MENU);
@@ -373,8 +371,7 @@ void MarlinUI::clear_lcd() { // Automatically cleared by Picture Loop
 }
 
 #if HAS_DISPLAY_SLEEP
-  void MarlinUI::sleep_on()  { u8g.sleepOn(); }
-  void MarlinUI::sleep_off() { u8g.sleepOff(); }
+  void MarlinUI::sleep_display(const bool sleep)  { sleep ? u8g.sleepOn() : u8g.sleepOff(); }
 #endif
 
 #if HAS_LCD_BRIGHTNESS

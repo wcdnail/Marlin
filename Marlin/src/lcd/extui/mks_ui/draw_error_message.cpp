@@ -22,7 +22,7 @@
 
 #include "../../../inc/MarlinConfigPre.h"
 
-#if HAS_TFT_LVGL_UI // || ENABLED(FSMC_GRAPHICAL_TFT)
+#if HAS_TFT_LVGL_UI
 
 #include "draw_ui.h"
 #include <lv_conf.h>

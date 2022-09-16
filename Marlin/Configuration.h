@@ -1960,8 +1960,8 @@
 #if EITHER(AUTO_BED_LEVELING_LINEAR, AUTO_BED_LEVELING_BILINEAR)
 
   // Set the number of grid points per dimension.
-  #define GRID_MAX_POINTS_X 4
-  #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
+  #define GRID_MAX_POINTS_X MY_GRID_MAX_POINTS_X
+  #define GRID_MAX_POINTS_Y MY_GRID_MAX_POINTS_Y
 
   // Probe along the Y axis, advancing X after each column
   //#define PROBE_Y_FIRST
@@ -1992,9 +1992,9 @@
 
   //#define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
 
-  #define MESH_INSET 30             // Set Mesh bounds as an inset region of the bed
-  #define GRID_MAX_POINTS_X 4       // Don't use more than 15 points per axis, implementation limited.
-  #define GRID_MAX_POINTS_Y 5
+  #define MESH_INSET MY_MESH_INSET  // Set Mesh bounds as an inset region of the bed
+  #define GRID_MAX_POINTS_X MY_GRID_MAX_POINTS_X // Don't use more than 15 points per axis, implementation limited.
+  #define GRID_MAX_POINTS_Y MY_GRID_MAX_POINTS_Y
 
   //#define UBL_HILBERT_CURVE       // Use Hilbert distribution for less travel when probing multiple points
 
@@ -2012,9 +2012,9 @@
   //=================================== Mesh ==================================
   //===========================================================================
 
-  #define MESH_INSET 30          // Set Mesh bounds as an inset region of the bed
-  #define GRID_MAX_POINTS_X 3    // Don't use more than 7 points per axis, implementation limited.
-  #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
+  #define MESH_INSET MY_MESH_INSET  // Set Mesh bounds as an inset region of the bed
+  #define GRID_MAX_POINTS_X MY_GRID_MAX_POINTS_X // Don't use more than 7 points per axis, implementation limited.
+  #define GRID_MAX_POINTS_Y MY_GRID_MAX_POINTS_Y
 
   //#define MESH_G28_REST_ORIGIN // After homing all axes ('G28' or 'G28 XYZ') rest Z at Z_MIN_POS
 
@@ -2106,7 +2106,7 @@
 #endif
 
 // Homing speeds (linear=mm/min, rotational=°/min)
-#define HOMING_FEEDRATE_MM_M { (40*60), (40*60), (8*60) }
+#define HOMING_FEEDRATE_MM_M MY_HOMING_FEEDRATE_MM_M
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
@@ -2223,14 +2223,14 @@
 //
 //@
 #define PREHEAT_1_LABEL      "ABS"
-#define PREHEAT_1_TEMP_HOTEND 250
+#define PREHEAT_1_TEMP_HOTEND 240
 #define PREHEAT_1_TEMP_BED    110
 #define PREHEAT_1_TEMP_CHAMBER 35
 #define PREHEAT_1_FAN_SPEED     0 // Value from 0 to 255
 
 //@
 #define PREHEAT_2_LABEL      "PLA"
-#define PREHEAT_2_TEMP_HOTEND 220
+#define PREHEAT_2_TEMP_HOTEND 210
 #define PREHEAT_2_TEMP_BED     60
 #define PREHEAT_2_TEMP_CHAMBER 35
 #define PREHEAT_2_FAN_SPEED   255 // Value from 0 to 255

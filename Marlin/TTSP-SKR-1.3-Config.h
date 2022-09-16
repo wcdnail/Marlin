@@ -71,9 +71,9 @@
 #ifdef AUTO_BED_LEVELING_UBL
   #define MESH_EDIT_GFX_OVERLAY
 #endif  
-#define MESH_INSET                  20
-#define GRID_MAX_POINTS_X           4
-#define GRID_MAX_POINTS_Y           5
+#define MY_MESH_INSET               20
+#define MY_GRID_MAX_POINTS_X        4
+#define MY_GRID_MAX_POINTS_Y        5
 
 // TODO: подправить!
 #define MY_NOZZLE_TO_PROBE_OFFSET   { 0, -55, 0 }                   // Координаты относительно сопла
@@ -177,6 +177,8 @@
 #define X_HOME_DIR -1
 #define Y_HOME_DIR -1 // @@ SapphirePro SKR 1.3 uses MIN Y endstop on max Y=-1 (for Nano)
 #define Z_HOME_DIR -1
+
+#define MY_HOMING_FEEDRATE_MM_M { (60*60), (60*60), (10*60) }
 
 /**********************************************************************************************************************
  * Концевики

@@ -83,8 +83,8 @@
 #define MY_Z_PROBE_FEEDRATE_SLOW    (MY_Z_PROBE_FEEDRATE_FAST / 2)
 
 // TODO: подправить!
-#define X_BED_SIZE                  220
-#define Y_BED_SIZE                  220
+#define X_BED_SIZE                  230
+#define Y_BED_SIZE                  230
 #define X_MIN_POS                   -2.9
 #define Y_MIN_POS                   7.5
 #define Z_MIN_POS                   0
@@ -125,11 +125,13 @@
 #define MY_Z_HYBRID_THRESHOLD                 3
 #define MY_E0_HYBRID_THRESHOLD               30   // [linear=mm/s, rotational=°/s]
 
+// @ Fast settings
+
 #define MY_HOLD_MULTIPLIER                  0.5   // Scales down the holding current from run current
 #define MY_INTERPOLATE                     true
-#define TMC_XY_MICROSTEPS                    64   // 0..256
-#define TMC_Z_MICROSTEPS                     16
-#define TMC_E_MICROSTEPS                     16
+#define TMC_XY_MICROSTEPS                   128   // 0..256
+#define TMC_Z_MICROSTEPS                     64
+#define TMC_E_MICROSTEPS                     64
 
 #define TMC_XY_CURRENT                      850
 #define TMC_XY_CURRENT_HOME                 700
@@ -178,7 +180,7 @@
 #define Y_HOME_DIR -1 // @@ SapphirePro SKR 1.3 uses MIN Y endstop on max Y=-1 (for Nano)
 #define Z_HOME_DIR -1
 
-#define MY_HOMING_FEEDRATE_MM_M { (60*60), (60*60), (10*60) }
+#define MY_HOMING_FEEDRATE_MM_M { (50*60), (50*60), (8*60) }
 
 /**********************************************************************************************************************
  * Концевики

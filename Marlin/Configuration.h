@@ -1168,8 +1168,17 @@
  * @ Titan
  *   E0 = 200 * 16 * 3 / (7.3 * 3.1415926) = 418.6 
  *   При E0 = 418.6, и выдавливании 100мм, по факту получаем 97.4мм, что на 1.026694045174538 меньше требуемых 100мм
+ * 
+ * @ Z - M92 Z1600.00
+ *   TR-8 четырех-заходная - 400
+ *   TR-8 одно-заходная - 1600
+ * 
+ * Calc: https://www.maxzprint.com.au/stepps-per-mm-calculator/
+ *       https://blog.prusa3d.com/calculator_3416/
+ * 
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 429.7741273100616 } // @ E was 93 
+
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 1600, 405 } // @ E was 93 , 4 titan E = 429.7741273100616, BMG = ~403.4
 
 /**
  * Default Max Feed Rate (linear=mm/s, rotational=°/s)
@@ -1189,7 +1198,7 @@
  * Override with M201
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 500, 500, 100, 5000 }
+#define DEFAULT_MAX_ACCELERATION      { 500, 500, 25, 5000 } // Z was 100
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)

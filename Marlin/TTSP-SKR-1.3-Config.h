@@ -129,12 +129,12 @@
 
 #define MY_HOLD_MULTIPLIER                  0.5   // Scales down the holding current from run current
 #define MY_INTERPOLATE                     true
-#define TMC_XY_MICROSTEPS                   128   // 0..256
-#define TMC_Z_MICROSTEPS                     64
-#define TMC_E_MICROSTEPS                     64
+#define TMC_XY_MICROSTEPS                    16   // 0..256
+#define TMC_Z_MICROSTEPS                     16
+#define TMC_E_MICROSTEPS                     16
 
-#define TMC_XY_CURRENT                      850
-#define TMC_XY_CURRENT_HOME                 700
+#define TMC_XY_CURRENT                      900
+#define TMC_XY_CURRENT_HOME                 900
 
 #define MY_X_CURRENT             TMC_XY_CURRENT   // (mA) RMS current. Multiply by 1.414 for peak current.
 #define MY_X_CURRENT_HOME   TMC_XY_CURRENT_HOME   // (mA) RMS current for sensorless homing
@@ -152,7 +152,7 @@
 //#define MY_Y_INTERPOLATE                  true
 //#define MY_Y_HOLD_MULTIPLIER               0.5
 
-#define MY_Z_CURRENT                         950
+#define MY_Z_CURRENT                        1000
 #define MY_Z_CURRENT_HOME              Z_CURRENT
 #define MY_Z_MICROSTEPS         TMC_Z_MICROSTEPS
 #define MY_Z_RSENSE                         0.11
@@ -180,7 +180,7 @@
 #define Y_HOME_DIR -1 // @@ SapphirePro SKR 1.3 uses MIN Y endstop on max Y=-1 (for Nano)
 #define Z_HOME_DIR -1
 
-#define MY_HOMING_FEEDRATE_MM_M { (50*60), (50*60), (8*60) }
+#define MY_HOMING_FEEDRATE_MM_M { (60*60), (60*60), (8*60) }
 
 /**********************************************************************************************************************
  * Концевики
@@ -195,11 +195,11 @@
 #define USE_ZMIN_PLUG
 #define USE_XMAX_PLUG
 #define USE_YMAX_PLUG
-#define USE_ZMAX_PLUG
+#define USE_ZMAX_PLUG // FIXME: использовался ёмкостным датчиком на Robin Nano
 
 #define MY_X_MIN_ENDSTOP_INVERTING          true
 #define MY_Y_MIN_ENDSTOP_INVERTING          true
-#define MY_Z_MIN_ENDSTOP_INVERTING          true
+#define MY_Z_MIN_ENDSTOP_INVERTING          false // оптический 
 #define MY_X_MAX_ENDSTOP_INVERTING          true
 #define MY_Y_MAX_ENDSTOP_INVERTING          true
 #define MY_Z_MAX_ENDSTOP_INVERTING          true
@@ -212,14 +212,14 @@
 
 #define INVERT_X_DIR                    true
 #define INVERT_Y_DIR                    true
-#define INVERT_Z_DIR                    true
+#define INVERT_Z_DIR                    false
 #define INVERT_E0_DIR                   false
 
 #define SPM_XY_KOEF                     (TMC_XY_MICROSTEPS/16)
 #define SPM_Z_KOEF                      (TMC_Z_MICROSTEPS/16)
 #define SPM_E_KOEF                      (TMC_E_MICROSTEPS/16)
 
-#define MY_DEFAULT_AXIS_STEPS_PER_UNIT  { 80 * SPM_XY_KOEF, 80 * SPM_XY_KOEF, 1600 * SPM_Z_KOEF, 403.44 * SPM_E_KOEF }
+#define MY_DEFAULT_AXIS_STEPS_PER_UNIT  { 80 * SPM_XY_KOEF, 80 * SPM_XY_KOEF, 400 * SPM_Z_KOEF, 403.44 * SPM_E_KOEF }
 
 #define MY_DEFAULT_MAX_FEEDRATE         { 200, 200, 4, 75 }
 #define MY_DEFAULT_MAX_ACCELERATION     { 2000, 2000, 100, 1000 }

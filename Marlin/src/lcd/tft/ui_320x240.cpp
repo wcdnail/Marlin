@@ -45,6 +45,8 @@
   #include "../../feature/bedlevel/bedlevel.h"
 #endif
 
+#include "DateTime-version.h"
+
 void MarlinUI::tft_idle() {
   #if ENABLED(TOUCH_SCREEN)
     if (TERN0(HAS_TOUCH_SLEEP, lcd_sleep_task())) return;
@@ -77,9 +79,25 @@ void MarlinUI::tft_idle() {
       #define SITE_URL_Y (TFT_HEIGHT - 52)
     #endif
     tft.add_image((TFT_WIDTH - BOOT_LOGO_W) / 2, (TFT_HEIGHT - BOOT_LOGO_H) / 2, imgBootScreen);
+
+    #ifndef WEBSITE_URL
+      #define WEBSITE_URL // Print build date time
+    #endif
+
     #ifdef WEBSITE_URL
-      tft_string.set(WEBSITE_URL);
+    {
+      static const char buildDateTime[] = { 
+        BUILD_DAY_CH0, BUILD_DAY_CH1, '.',
+        BUILD_MONTH_CH0, BUILD_MONTH_CH1, '.',
+        BUILD_YEAR_CH0, BUILD_YEAR_CH1, BUILD_YEAR_CH2, BUILD_YEAR_CH3, ' ',
+        BUILD_HOUR_CH0, BUILD_HOUR_CH1, ':',
+        BUILD_MIN_CH0, BUILD_MIN_CH1, '.',
+        BUILD_SEC_CH0, BUILD_SEC_CH1, 
+        0
+      };
+      tft_string.set(buildDateTime);
       tft.add_text(tft_string.center(TFT_WIDTH), SITE_URL_Y, COLOR_WEBSITE_URL, tft_string);
+    }
     #endif
 
     tft.queue.sync();

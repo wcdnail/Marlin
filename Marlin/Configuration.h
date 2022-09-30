@@ -1165,7 +1165,7 @@
  * Override with M92
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 806.8 }  // E0 Titan = 815
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 851.81 }  // E0 for BMG, old value for Titan = 815
 
 /**
  * Default Max Feed Rate (linear=mm/s, rotational=°/s)

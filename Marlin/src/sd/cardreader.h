@@ -354,7 +354,11 @@ private:
 };
 
 #if ENABLED(USB_FLASH_DRIVE_SUPPORT)
-  #define IS_SD_INSERTED() DiskIODriver_USBFlash::isInserted()
+  #if defined(MULTI_VOLUME) && defined(HAS_SD_DETECT) && HAS_SD_DETECT
+    #define IS_SD_INSERTED() (READ(SD_DETECT_PIN) == SD_DETECT_STATE) || DiskIODriver_USBFlash::isInserted()
+  #else
+    #define IS_SD_INSERTED() DiskIODriver_USBFlash::isInserted()
+  #endif
 #elif HAS_SD_DETECT
   #define IS_SD_INSERTED() (READ(SD_DETECT_PIN) == SD_DETECT_STATE)
 #else

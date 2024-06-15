@@ -13,9 +13,9 @@ if pioutil.is_pio_build():
     target_drive = "REARM"
 
     import platform
-
     current_OS = platform.system()
-    Import("env")
+
+    env = pioutil.env
 
     def print_error(e):
         print('\nUnable to find destination disk (%s)\n' \
@@ -73,7 +73,7 @@ if pioutil.is_pio_build():
                 #
                 import getpass
                 user = getpass.getuser()
-                mpath = Path('media', user)
+                mpath = Path('/media', user)
                 drives = [ x for x in mpath.iterdir() if x.is_dir() ]
                 if target_drive in drives:  # If target drive is found, use it.
                     target_drive_found = True

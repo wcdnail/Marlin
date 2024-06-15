@@ -64,6 +64,9 @@
 #define STRING_CONFIG_H_AUTHOR "(MNi72)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
+
+#define SHOW_BOOTSCREEN
+
 // @section machine
 
 // Choose the name from boards.h that matches your setup

@@ -3427,12 +3427,14 @@
 #endif
 
 #if ANY(HAS_MARLINUI_MENU, TOUCH_UI_FTDI_EVE)
-  // LCD timeout to status screen default is 15s
-  #ifndef LCD_TIMEOUT_TO_STATUS
-    #define LCD_TIMEOUT_TO_STATUS 15000
-  #endif
-  #if LCD_TIMEOUT_TO_STATUS
-    #define HAS_SCREEN_TIMEOUT 1
+  #ifndef HAS_SCREEN_TIMEOUT
+    // LCD timeout to status screen default is 15s
+    #ifndef LCD_TIMEOUT_TO_STATUS
+      #define LCD_TIMEOUT_TO_STATUS 15000
+    #endif
+    #if LCD_TIMEOUT_TO_STATUS
+      #define HAS_SCREEN_TIMEOUT 1
+    #endif
   #endif
 #endif
 

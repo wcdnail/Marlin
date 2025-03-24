@@ -45,6 +45,8 @@
   #include "../../feature/bedlevel/bedlevel.h"
 #endif
 
+#include "DateTime-version.h"
+
 void MarlinUI::tft_idle() {
   #if ENABLED(TOUCH_SCREEN)
     if (TERN0(HAS_DISPLAY_SLEEP, lcd_sleep_task())) return;
@@ -69,10 +71,9 @@ void MarlinUI::tft_idle() {
     tft.canvas(0, 0, TFT_WIDTH, TFT_HEIGHT);
     tft.set_background(COLOR_BACKGROUND);
     tft.add_image(BOOTSCREEN_LOGO_X, BOOTSCREEN_LOGO_Y, imgBootScreen);
-    #ifdef WEBSITE_URL
-      tft_string.set(WEBSITE_URL);
-      tft.add_text(tft_string.center(TFT_WIDTH), BOOTSCREEN_SITE_URL_Y, COLOR_WEBSITE_URL, tft_string);
-    #endif
+
+    tft_string.set(BLD_DATETIME_STRBUF);
+    tft.add_text(tft_string.center(TFT_WIDTH), BOOTSCREEN_SITE_URL_Y, COLOR_WEBSITE_URL, tft_string);
 
     tft.queue.sync();
   }
